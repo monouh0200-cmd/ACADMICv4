@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-app:        #f7f8fc;
+    --bg-card:       #ffffff;
+    --bg-sidebar:    #ffffff;
+    --bg-input:      #f8fafc;
+    --text-primary:  #0f172a;
+    --text-secondary:#64748b;
+    --text-muted:    #94a3b8;
+    --border-color:  #e2e8f0;
+    --emerald:       #16a34a;
+    --emerald-l:     #dcfce7;
+    --shadow-card:   0 1px 3px rgba(0,0,0,.06),0 4px 16px rgba(0,0,0,.06);
+  }
+  [data-theme="dark"] {
+    --bg-app:        #0f1117;
+    --bg-card:       #1a1d27;
+    --bg-sidebar:    #141720;
+    --bg-input:      #1e2130;
+    --text-primary:  #f1f5f9;
+    --text-secondary:#94a3b8;
+    --text-muted:    #64748b;
+    --border-color:  #2d3348;
+    --emerald:       #22c55e;
+    --emerald-l:     #14532d;
+    --shadow-card:   0 1px 3px rgba(0,0,0,.3),0 4px 20px rgba(0,0,0,.3);
+  }
+}
+
+@layer base {
+  * { border-color: var(--border-color); box-sizing: border-box; }
+  body {
+    background-color: var(--bg-app);
+    color: var(--text-primary);
+    font-family: 'Cairo', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    direction: rtl;
+    margin: 0;
+    transition: background-color .25s, color .25s;
+  }
+}
+
+/* ── Skeleton shimmer ── */
+@keyframes shimmer {
+  0%   { background-position: -600px 0; }
+  100% { background-position:  600px 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, var(--border-color) 25%, var(--bg-input) 50%, var(--border-color) 75%);
+  background-size: 1200px 100%;
+  animation: shimmer 1.4s infinite linear;
+  border-radius: 8px;
+}
+
+/* ── Dark mode utility overrides ── */
+[data-theme="dark"] .dark-card  { background: var(--bg-card) !important; border-color: var(--border-color) !important; }
+[data-theme="dark"] .dark-input { background: var(--bg-input) !important; border-color: var(--border-color) !important; color: var(--text-primary) !important; }
+[data-theme="dark"] .dark-text  { color: var(--text-primary) !important; }
+[data-theme="dark"] .dark-text2 { color: var(--text-secondary) !important; }
+[data-theme="dark"] .dark-border{ border-color: var(--border-color) !important; }
+[data-theme="dark"] .dark-sidebar{ background: var(--bg-sidebar) !important; }
+[data-theme="dark"] .dark-app   { background: var(--bg-app) !important; }
+
+/* Smooth page transitions */
+.page-enter { animation: fadeUp .2s ease; }
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(8px); }
+  to   { opacity:1; transform:translateY(0); }
+}

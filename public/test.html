@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1 id="status">Testing...</h1>
+<script>
+  document.getElementById('status').textContent = 'JS works! ✅';
+  // Check env
+  fetch('/')
+    .then(r => r.text())
+    .then(html => {
+      if (html.includes('root')) {
+        document.getElementById('status').textContent += ' | HTML loads ✅';
+      }
+    });
+</script>
+</body>
+</html>
